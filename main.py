@@ -40,8 +40,3 @@ def DeleteNote():
     choice = input('Enter a number of note to delete this note: ')
     os.remove(f'{path}/{NOTE} {choice}.txt')
     ListOfNotes()
-
-
-NewNote()
-# EditNote()
-# DeleteNote()
