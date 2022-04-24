@@ -1,6 +1,6 @@
 from PyQt5 import QtWidgets, uic, QtGui, QtCore
 from PyQt5.QtGui import QIcon
-from PyQt5.QtWidgets import QWidget, QMessageBox, qApp
+from PyQt5.QtWidgets import QWidget, QMessageBox, qApp, QAbstractItemView
 import sys
 import os
 
@@ -29,6 +29,7 @@ class App(QWidget):
         self.notes_list = os.listdir(self.path)
         for note in self.notes_list:
             item = QtGui.QStandardItem(note)
+            item.setFlags(QtCore.Qt.ItemIsEnabled | QtCore.Qt.ItemIsSelectable | QtCore.Qt.ItemIsEditable)
             item.setData(note)
             self.model.appendRow(item)
         self.ui.listView.setModel(self.model)
@@ -40,7 +41,12 @@ class App(QWidget):
         self.ui.btn2.clicked.connect(lambda: self.EditNote())
         self.ui.btn3.clicked.connect(lambda: self.DeleteNote())
         self.ui.listView.clicked.connect(lambda: self.item_clicked())
-        # self.ui.listView.mouseDoubleClickEvent(lambda: self.rename_note())
+        self.ui.listView.setEditTriggers(QAbstractItemView.NoEditTriggers)
+        self.ui.listView.doubleClicked.connect(self.item_doubleClicked)
+        self.model.itemChanged.connect(lambda: print('yes'))
+
+    def item_doubleClicked(self, index):
+        print(self.ui.listView.currentIndex().data())
 
     def create_messagebox(self, text):
         messagebox = QMessageBox()
