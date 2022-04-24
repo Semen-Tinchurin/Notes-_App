@@ -49,28 +49,28 @@
     <rect>
      <x>10</x>
      <y>260</y>
-     <width>131</width>
+     <width>132</width>
      <height>41</height>
     </rect>
    </property>
    <layout class="QGridLayout" name="gridLayout">
-    <item row="0" column="0">
-     <widget class="QPushButton" name="btn1">
+    <item row="0" column="1">
+     <widget class="QPushButton" name="btn2">
       <property name="toolTip">
-       <string>create</string>
+       <string>edit and save</string>
       </property>
       <property name="whatsThis">
        <string/>
       </property>
       <property name="styleSheet">
-       <string notr="true">background-color:rgb(177, 255, 149)</string>
+       <string notr="true">background-color:rgb(0, 203, 0)</string>
       </property>
       <property name="text">
        <string/>
       </property>
       <property name="icon">
        <iconset>
-        <normaloff>icons/add-button.png</normaloff>icons/add-button.png</iconset>
+        <normaloff>icons/edit.png</normaloff>icons/edit.png</iconset>
       </property>
       <property name="checkable">
        <bool>false</bool>
@@ -97,23 +97,29 @@
       </property>
      </widget>
     </item>
-    <item row="0" column="1">
-     <widget class="QPushButton" name="btn2">
-      <property name="mouseTracking">
-       <bool>false</bool>
-      </property>
+    <item row="0" column="0">
+     <widget class="QPushButton" name="btn1">
       <property name="toolTip">
-       <string>edit</string>
+       <string>create</string>
+      </property>
+      <property name="whatsThis">
+       <string/>
       </property>
       <property name="styleSheet">
-       <string notr="true">background-color:rgb(171, 172, 163)</string>
+       <string notr="true">background-color:rgb(85, 255, 127)</string>
       </property>
       <property name="text">
        <string/>
       </property>
       <property name="icon">
        <iconset>
-        <normaloff>icons/edit.png</normaloff>icons/edit.png</iconset>
+        <normaloff>icons/add-button.png</normaloff>icons/add-button.png</iconset>
+      </property>
+      <property name="checkable">
+       <bool>false</bool>
+      </property>
+      <property name="autoDefault">
+       <bool>true</bool>
       </property>
      </widget>
     </item>
