@@ -103,7 +103,7 @@
        <bool>false</bool>
       </property>
       <property name="toolTip">
-       <string>settings</string>
+       <string>edit</string>
       </property>
       <property name="styleSheet">
        <string notr="true">background-color:rgb(171, 172, 163)</string>
@@ -113,7 +113,7 @@
       </property>
       <property name="icon">
        <iconset>
-        <normaloff>icons/icon-settings.png</normaloff>icons/icon-settings.png</iconset>
+        <normaloff>icons/edit.png</normaloff>icons/edit.png</iconset>
       </property>
      </widget>
     </item>
