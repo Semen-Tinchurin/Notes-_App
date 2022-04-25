@@ -1,5 +1,4 @@
 from PyQt5 import QtWidgets, uic, QtGui, QtCore
-from PyQt5.QtCore import QSize
 from PyQt5.QtGui import QIcon
 from PyQt5.QtWidgets import QWidget, QMessageBox, qApp, QAbstractItemView
 import sys
@@ -107,4 +106,3 @@ if __name__ == '__main__':
     app = QtWidgets.QApplication(sys.argv)
     notes = App()
     app.exec_()
-    # sys.exit(app.exec_())
