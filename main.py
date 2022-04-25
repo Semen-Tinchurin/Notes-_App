@@ -1,4 +1,5 @@
 from PyQt5 import QtWidgets, uic, QtGui, QtCore
+from PyQt5.QtCore import QSize
 from PyQt5.QtGui import QIcon
 from PyQt5.QtWidgets import QWidget, QMessageBox, qApp, QAbstractItemView
 import sys
@@ -10,7 +11,6 @@ class App(QWidget):
         super().__init__()
         self.path = 'Notes'
         self.NOTE = 'Note '
-        self.number_of_note = 1
         self.ui = None
         self.notes_list = None
         self.model = QtGui.QStandardItemModel(self)
@@ -18,7 +18,7 @@ class App(QWidget):
         self.start()
 
     def start(self):
-        self.ui = uic.loadUi('notewidget_test.ui')
+        self.ui = uic.loadUi('notewidget.ui')
         self.ui.show()
         self.set()
         self.setuplistveiw()
@@ -26,10 +26,10 @@ class App(QWidget):
     # set up ListView widget
     def setuplistveiw(self):
         self.model.clear()
-        self.notes_list = os.listdir(self.path)
+        self.notes_list = sorted(os.listdir(self.path), key=lambda name: len(name))
         for note in self.notes_list:
             item = QtGui.QStandardItem(note)
-            item.setFlags(QtCore.Qt.ItemIsEnabled | QtCore.Qt.ItemIsSelectable | QtCore.Qt.ItemIsEditable)
+            item.setFlags(QtCore.Qt.ItemIsEnabled | QtCore.Qt.ItemIsSelectable)
             item.setData(note)
             self.model.appendRow(item)
         self.ui.listView.setModel(self.model)
@@ -42,11 +42,6 @@ class App(QWidget):
         self.ui.btn3.clicked.connect(lambda: self.DeleteNote())
         self.ui.listView.clicked.connect(lambda: self.item_clicked())
         self.ui.listView.setEditTriggers(QAbstractItemView.NoEditTriggers)
-        self.ui.listView.doubleClicked.connect(self.item_doubleClicked)
-        self.model.itemChanged.connect(lambda: print('yes'))
-
-    def item_doubleClicked(self, index):
-        print(self.ui.listView.currentIndex().data())
 
     def create_messagebox(self, text):
         messagebox = QMessageBox()
@@ -68,11 +63,13 @@ class App(QWidget):
     # creating a new note
     def NewNote(self):
         if self.ui.textEdit.toPlainText() != '':
-            file_name = f'{self.NOTE} {self.number_of_note}.txt'
-            if file_name in os.listdir(self.path):
-                file_name = f"{self.NOTE} {self.number_of_note + len(os.listdir(self.path))}.txt"
-                print(file_name)
+            index = 1
+            file_name = f'{self.NOTE}{index}.txt'
             text = self.ui.textEdit.toPlainText()
+            for f_name in os.listdir(self.path):
+                if f_name == file_name or file_name in os.listdir(self.path):
+                    index += 1
+                    file_name = f'{self.NOTE}{index}.txt'
             with open(f'Notes/{file_name}', 'w', encoding='utf-8') as file:
                 file.write(text)
 
